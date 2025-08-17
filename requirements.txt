@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+python-multipart
+jinja2
+joblib
+scikit-learn>=1.0.0  # Includes Random Forest
+pandas

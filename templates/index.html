@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spam Detector — Trevin Rodrigo</title>
+<link rel="stylesheet" href="/static/styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1a33;
+  color: #ffffff;
+}
+.container {
+  max-width: 950px;
+  margin: 50px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 35px rgba(0,0,0,0.7);
+  position: relative;
+}
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/static/images/email-bg.png') center/cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  border-radius: 15px;
+}
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 36px;
+  gap: 12px;
+  color: #ffffff;
+}
+.subtitle {
+  color: #d0e3ff;
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+.email-form label {
+  font-weight: 600;
+  margin-top: 18px;
+  display: block;
+  color: #ffffff;
+  font-size: 16px;
+}
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: none;
+  resize: vertical;
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  font-size: 16px;
+}
+.actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn {
+  background: #1e3f80;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+.btn:hover { background: #1552a1; }
+.btn.secondary {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+.btn.example {
+  background: #0a2a66;
+}
+.btn.example:hover { background: #08345a; }
+.result {
+  margin-top: 30px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.badge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  font-weight: bold;
+  color: #0b1a33;
+}
+.percent { font-weight: 700; color: #d0e3ff; }
+.bar {
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 14px;
+  transition: width 1s ease, background 0.4s ease;
+}
+.explain {
+  font-size: 15px;
+  color: #d0e3ff;
+}
+footer {
+  margin-top: 30px;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+<main class="container">
+  <h1><i class="fas fa-envelope"></i> Spam Detector</h1>
+  <p class="subtitle">Paste a full email (Subject + Body) below to check if it is spam using our ML model</p>
+
+  <div class="email-form">
+    <label><i class="fas fa-heading"></i> Subject:</label>
+    <textarea id="subjectText" placeholder="Enter email subject here..."></textarea>
+    <label><i class="fas fa-file-lines"></i> Body:</label>
+    <textarea id="bodyText" placeholder="Enter email body here..."></textarea>
+
+    <div class="actions">
+      <button id="checkBtn" class="btn"><i class="fas fa-check"></i> Check</button>
+      <button id="clearBtn" class="btn secondary"><i class="fas fa-eraser"></i> Clear</button>
+      <button class="btn example" onclick="fillExample('spam')"><i class="fas fa-bug"></i> Spam Example</button>
+      <button class="btn example" onclick="fillExample('notspam')"><i class="fas fa-envelope"></i> Not Spam Example</button>
+    </div>
+  </div>
+
+  <div id="result" class="result hide">
+    <div class="label-row">
+      <span id="labelBadge" class="badge">-</span>
+      <span id="percentage" class="percent">0%</span>
+    </div>
+    <div class="bar">
+      <div id="barFill" class="bar-fill"></div>
+    </div>
+    <div id="explain" class="explain"></div>
+  </div>
+
+  <footer>
+    <p>© Trevin Rodrigo — Spam Detection Demo</p>
+  </footer>
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
