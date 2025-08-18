@@ -1,4 +1,4 @@
-# Spam Email Detector 🛡️
+# Spam Email Detector 📧🛡️
 
 A machine learning-powered web application that detects spam emails with 98% accuracy using Random Forest classification.
 
