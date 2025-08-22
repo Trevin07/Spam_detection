@@ -51,5 +51,6 @@ This project combines:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/spam-detector.git
+   git clone https://github.com/Trevin07/spam-detector.git
+
    cd spam-detector
